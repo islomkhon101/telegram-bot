@@ -140,7 +140,7 @@ async def duplicate_flight_exists(flight_date, flight_no):
         return await cur.fetchone() is not None
 
 async def save_flight(data, created_by, staff_ids, manual_names, photos, source_chat_id, source_chat_type):
-    print(“SAVE_FLIGHT START”, data .get(“flight_no”), created_by, staff_ids, flush = True).
+    print("SAVE_FLIGHT START", data .get("flight_no"), created_by, staff_ids, flush = True).
     async with aiosqlite.connect(DB_PATH) as db:
         cur=await db.execute("""
         INSERT INTO flights(
@@ -165,7 +165,7 @@ async def save_flight(data, created_by, staff_ids, manual_names, photos, source_
             await db.execute("INSERT INTO flight_photos(flight_id,file_id,file_unique_id) VALUES(?,?,?)",
                              (fid,p["file_id"],p.get("file_unique_id")))
         await db.commit()
-        print(“SAVE_FLIGHT OK”, fid, flush=True).        
+        print("SAVE_FLIGHT OK", fid, flush=True).        
         return fid
 
 async def get_flight(fid):
@@ -181,7 +181,7 @@ async def get_photos(fid):
         return await cur.fetchall()
 
 async def get_flights(start_date,end_date,employee_tg_id=None):
-    print(“GET_FLIGHTS”, start_date, end_date, employee_tg_id, flush=True.    
+    print("GET_FLIGHTS", start_date, end_date, employee_tg_id, flush=True.    
     q="SELECT * FROM flights WHERE flight_date BETWEEN ? AND ?"; p=[start_date,end_date]
     if employee_tg_id is not None:
         q+=" AND EXISTS(SELECT 1 FROM flight_staff fs WHERE fs.flight_id=flights.id AND fs.employee_tg_id=?)"
