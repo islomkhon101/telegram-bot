@@ -181,7 +181,7 @@ async def get_photos(fid):
         return await cur.fetchall()
 
 async def get_flights(start_date,end_date,employee_tg_id=None):
-    print("GET_FLIGHTS", start_date, end_date, employee_tg_id, flush=True    
+    print("GET_FLIGHTS", start_date, end_date, employee_tg_id, flush=True)    
     q="SELECT * FROM flights WHERE flight_date BETWEEN ? AND ?"; p=[start_date,end_date]
     if employee_tg_id is not None:
         q+=" AND EXISTS(SELECT 1 FROM flight_staff fs WHERE fs.flight_id=flights.id AND fs.employee_tg_id=?)"
