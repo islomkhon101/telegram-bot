@@ -140,6 +140,7 @@ async def duplicate_flight_exists(flight_date, flight_no):
         return await cur.fetchone() is not None
 
 async def save_flight(data, created_by, staff_ids, manual_names, photos, source_chat_id, source_chat_type):
+    print(“SAVE_FLIGHT START”, data .get(“flight_no”), created_by, staff_ids, flush = True).
     async with aiosqlite.connect(DB_PATH) as db:
         cur=await db.execute("""
         INSERT INTO flights(
