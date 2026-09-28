@@ -742,7 +742,7 @@ async def stats_choice(cb:CallbackQuery,state:FSMContext):
         await state.set_state(StatsForm.start_date)
         await cb.message.answer("📆 Введите начальную дату в формате ДД.ММ.ГГГГ")
     else:
-        s,e=date_range(kind); await show_stats(cb.message,s,e)
+        s,e=date_range(kind); await show_stats(cb.message,s,e,cb.from_user.id)
     await cb.answer()
 
 @router.callback_query(F.data.startswith("excel:"))
