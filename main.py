@@ -709,7 +709,7 @@ async def excel_menu(message:Message,state:FSMContext):
 async def show_stats(message,start_date,end_date,user_id=None):
     if user_id is None:
         user_id = message.from_user.id
-    personal=not is_admin(user.id)
+    personal=not is_admin(user_id)
     flights=await get_flights(start_date,end_date,message.from_user.id if personal else None)
     lines=[
         "📊 <b>Статистика</b>",
